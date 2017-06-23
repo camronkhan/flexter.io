@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Tag(models.Model):
 	content = models.CharField(max_length=50, unique=True, null=False)
 	use_count = models.PositiveIntegerField(default=0, editable=False, null=False)
+	articles = models.ManyToManyField('Article')
 	
 	def __str__(self):
 		return self.content
@@ -23,7 +24,7 @@ class Article(models.Model):
 	content = models.TextField(null=False)
 	view_count = models.PositiveIntegerField(default=0, editable=False, null=False)
 	author = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
-	tags = models.ManyToManyField(Tag)
+	tags = models.ManyToManyField(Tag, through=Tag.articles.through)
 	go_live = models.DateTimeField(null=True, blank=True)
 	last_viewed = models.DateTimeField(null=True, editable=False)
 
