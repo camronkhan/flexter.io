@@ -1,0 +1,96 @@
+body {
+	color: rgba(0, 0, 0, 0.8) !important;
+}
+
+a {
+	text-decoration: none !important;
+	color: rgba(0, 0, 0, 0.8) !important;
+}
+
+a:hover {
+	text-decoration: none !important;
+	color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.flexter-navbar {
+	margin-bottom: 64px;
+	padding: 32px 4rem;
+	border-bottom: 1px solid rgb(240, 240, 242);
+}
+
+.flexter-btn {
+	border-color: rgba(0, 0, 0, 0.15) !important;
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.flexter-footer {
+	margin-top: 100px;
+	min-height: 100px;
+	padding: 32px 8rem;
+	border-top: 1px solid rgb(240, 240, 242);
+}
+
+.flexter-article-list-container {
+	max-width: 767px !important;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+.flexter-article-list {
+	margin-top: 4rem;
+	margin-bottom: 2rem;
+	list-style-type: none;
+}
+
+.flexter-article-list-item {
+	border-bottom: 1px solid rgb(240, 240, 242);
+  line-height: 1.9rem;
+  margin-bottom: 2.75rem;
+  padding-bottom: 2.75rem;
+}
+
+.flexter-article-list-item-title {
+	font-size: 2rem;
+	line-height: 2rem;
+	margin-bottom: 1rem;
+	font-weight: 400;
+}
+
+.flexter-article-list-item-summary {
+	line-height: 2rem;
+	margin-bottom: 1rem;
+	font-weight: 400;
+}
+
+.flexter-article-list-item-meta {
+	margin-bottom: 0;
+	font-weight: 300;
+}
+
+.flexter-meta-separator::after {
+    content: "–";
+    color: rgba(0, 0, 0, 0.8);
+    display: inline;
+    margin: 0 0.5rem;
+}
+
+.flexter-article-title {
+	font-size: 2.5rem;
+	line-height: 2.5rem;
+	margin-bottom: 2.5rem;
+	font-weight: 400;
+}
+
+.flexter-article-meta {
+	padding-bottom: 3rem;
+}
+
+.flexter-article-content {
+	padding-top: 3rem;
+}
+
+.flexter-article-separator {
+	border-color: rgb(240, 240, 242);
+	max-width: 767px;
+}

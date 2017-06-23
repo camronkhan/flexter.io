@@ -1,0 +1,18 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+<article>
+	<header>
+		<h1 class="display-1 flexter-article-title text-center">{{article.title}}</h1>
+		<div class="flexter-article-meta text-center">
+			{{article.author.first_name}} {{article.author.last_name}}
+			<span class="flexter-separator"></span>
+			{{article.go_live|date:'F d, Y'}}
+		</div>
+	</header>
+	<hr class="flexter-article-separator">
+	<div class="flexter-article-content">
+		{{article.content|safe}}
+	</div>
+</article>
+{% endblock %}
