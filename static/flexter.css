@@ -50,15 +50,15 @@ a:hover {
 
 .flexter-article-list-item {
 	border-bottom: 1px solid rgb(240, 240, 242);
-  line-height: 1.9rem;
+  line-height: 2rem;
   margin-bottom: 2.75rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
 }
 
 .flexter-article-list-item-title {
 	font-size: 2rem;
 	line-height: 2rem;
-	margin-bottom: 1.5rem;
+	margin-bottom: 1rem;
 	font-weight: 400;
 }
 
@@ -82,13 +82,12 @@ a:hover {
 	list-style: none;
 	display: inline-block !important;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 0.75rem 0;
 }
 
 .flexter-article-list-item-tag-item {
 	display: inline-block !important;
 	margin-right: 5px;
-	margin-left: 5px;
 }
 
 .flexter-meta-separator::after {
