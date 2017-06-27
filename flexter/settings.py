@@ -25,7 +25,7 @@ SECRET_KEY = 'cu2ldr7xx$ohpy!w(=s3ldw05ibc)x*r#1^zswi0@iney76t%w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.example.com', '45.55.192.244']
+ALLOWED_HOSTS = ['.example.com', 'www.flexter.io', 'flexter.io']
 
 
 # Application definition

@@ -22,11 +22,9 @@ class Article(models.Model):
 	title = models.CharField(max_length=100, null=False)
 	summary = models.CharField(max_length=300, null=False)
 	content = models.TextField(null=False)
-	view_count = models.PositiveIntegerField(default=0, editable=False, null=False)
 	author = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
 	tags = models.ManyToManyField(Tag, through=Tag.articles.through, blank=True)
 	go_live = models.DateTimeField(null=True, blank=True)
-	last_viewed = models.DateTimeField(null=True, editable=False)
 
 	def __str__(self):
 		return self.title
@@ -39,4 +37,3 @@ class Link(models.Model):
 
 	def __str__(self):
 		return self.url
-
