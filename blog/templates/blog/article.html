@@ -11,7 +11,7 @@
 		</div>
 		<ul class="flexter-article-tag-list">
 			{% for tag in article.tags.all %}
-				<li class="flexter-article-tag-item"><small><a href="/">{{tag.content | upper}}</a></small></li>
+				<li class="flexter-article-tag-item"><small><a href="/blog/tag/?id={{tag.id|urlencode:''}}">{{tag.content | upper}}</a></small></li>
 			{% endfor %}
 		</ul>
 	</header>
