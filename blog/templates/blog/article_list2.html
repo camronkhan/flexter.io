@@ -1,0 +1,24 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+<div class="flexter-article-list-container">
+	<ol class="flexter-article-list">
+		{% for article in object_list %}
+			<li class="flexter-article-list-item infinite-scroll-item">
+				<h2 class="display-1 flexter-article-list-item-title"><a href="/blog/{{article.id}}">{{article.title}}</a></h2>
+				<ul class="flexter-article-list-item-tag-list">
+					{% for tag in article.tags.all %}
+						<li class="flexter-article-list-item-tag-item"><small><a href="/blog/tag/?id={{tag.id|urlencode:''}}">{{tag.content | upper}}</a></small></li>
+					{% endfor %}
+				</ul>
+				<p class="lead flexter-article-list-item-summary">{{article.summary}}</p>
+				<p class="flexter-article-list-item-author-date">
+					{{article.author.first_name}} {{article.author.last_name}}
+					<span class="flexter-meta-separator"></span>
+					{{article.go_live|date:'F d, Y'}}
+				</p>
+			</li>
+		{% endfor %}
+	</ol>
+</div>
+{% endblock %}

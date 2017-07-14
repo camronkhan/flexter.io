@@ -12,6 +12,12 @@ a:hover {
 	color: rgba(0, 0, 0, 0.15) !important;
 }
 
+a.disabled-link {
+   pointer-events: none;
+   cursor: default;
+   opacity: 0.6;
+}
+
 .flexter-navbar {
 	margin-bottom: 64px;
 	padding: 32px 4rem;
@@ -95,6 +101,14 @@ a:hover {
     color: rgba(0, 0, 0, 0.8);
     display: inline;
     margin: 0 0.5rem;
+}
+
+.flexter-pagination-text {
+	display: inline-block !important;
+	text-transform: uppercase;
+	word-spacing: 4px;
+	margin-left: 25px;
+	margin-right: 25px;
 }
 
 .flexter-article-header {
