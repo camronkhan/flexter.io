@@ -4,65 +4,71 @@ from django.http import HttpResponse
 from django.db.models import Q
 from blog.models import Article
 
-articles_per_page = 5
+def find_articles(request):
+	# get article list
+	articles = Article.objects.all().order_by('-go_live')
+	# get query params from url
+	page = request.GET.get('page')
+	# get paginated list of articles
+	paginated_article_list = get_paginated_article_list(articles, page)
+	# render result
+	return render(request, 'blog/article_list.html', { 'paginated_article_list': paginated_article_list })
+
 
 def find_articles_via_search(request):
     # get article list
 	articles = Article.objects.all().order_by('-go_live')
-	# get 'q' query param from url
-	query_param = request.GET.get('q')
-	# filter via query param
-	if query_param:
-		articles = articles.filter(Q(title__icontains=query_param) | Q(summary__icontains=query_param)).distinct()
-		pagination_query_param = '&q=' + query_param
-	# get 'page' query param from url
-	page = request.GET.get('page', 1)
-	# get paginator with max num articles
-	paginator = Paginator(articles, articles_per_page)
-	# if no page exists, use page == 1
-	try:
-		articles = paginator.page(page)
-	except PageNotAnInteger:
-		articles = paginator.page(1)
-	except EmptyPage:
-		articles = paginator.page(paginator.num_pages)
+	# get query params
+	term = request.GET.get('term')
+	page = request.GET.get('page')
+	# filter via search term
+	if term:
+		articles = articles.filter(Q(title__icontains=term) | Q(summary__icontains=term)).distinct()
+		query_param_page = '&term=' + term
+	else:
+		query_param_page = None
+	# get paginated list of articles
+	paginated_article_list = get_paginated_article_list(articles, page)
+	# create context to pass template
+	template_context_dict = { 'paginated_article_list': paginated_article_list }
+	if query_param_page:
+		template_context_dict['query_param_page'] = query_param_page
 	# render result
-	return render(request, 'blog/article_list.html', { 'articles': articles, 'pagination_query_param': pagination_query_param })
+	return render(request, 'blog/article_list.html', template_context_dict)
 
 
 def find_articles_via_tag(request):
 	# get article list
 	articles = Article.objects.all().order_by('-go_live')
-	# get 'q' query param from url
-	query_param = request.GET.get('id')
-	# filter via query param
-	if query_param:
-		articles = articles.filter(tags__id=query_param).distinct()
-		pagination_query_param = '&id=' + query_param
-	# get 'page' query param from url
-	page = request.GET.get('page', 1)
+	# get query params from url
+	tag_id = request.GET.get('id')
+	page = request.GET.get('page')
+	# filter via tag id
+	if tag_id:
+		articles = articles.filter(tags__id=tag_id).distinct()
+		query_param_page = '&id=' + tag_id	
+	else:
+		query_param_page = None
+	# get paginated list of articles
+	paginated_article_list = get_paginated_article_list(articles, page)
+	# create context to pass to template
+	template_context_dict = { 'paginated_article_list': paginated_article_list }
+	if query_param_page:
+		template_context_dict['query_param_page'] = query_param_page
+	# render result
+	return render(request, 'blog/article_list.html', template_context_dict)
+
+
+def get_paginated_article_list(article_list, page_num):
+	page_query_param_name = 'page'
+	articles_per_page = 5
 	# get paginator with max num articles
-	paginator = Paginator(articles, articles_per_page)
+	paginator = Paginator(article_list, articles_per_page)
 	# if no page exists, use page == 1
 	try:
-		articles = paginator.page(page)
+		paginated_article_list = paginator.page(page_num)
 	except PageNotAnInteger:
-		articles = paginator.page(1)
+		paginated_article_list = paginator.page(1)
 	except EmptyPage:
-		articles = paginator.page(paginator.num_pages)
-	# render result
-	return render(request, 'blog/article_list.html', {'articles': articles, 'pagination_query_param': pagination_query_param })
-
-
-def load_article_list(request):
-	articles = Article.objects.all().order_by('-go_live')
-	page = request.GET.get('page', 1)
-	paginator = Paginator(articles, articles_per_page)
-	try:
-		articles = paginator.page(page)
-	except PageNotAnInteger:
-		articles = paginator.page(1)
-	except EmptyPage:
-		articles = paginator.page(paginator.num_ages)
-	return render(request, 'blog/article_list.html', { 'articles': articles })
-
+		paginated_article_list = paginator.page(paginator.num_pages)
+	return paginated_article_list

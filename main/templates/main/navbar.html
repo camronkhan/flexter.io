@@ -2,7 +2,7 @@
   <a class="navbar-brand flexter-navbar-brand" href="/">flexter.io</a>
   <div class="navbar-collapse justify-content-end">
     <form class="form-inline mt-2 mt-md-0 float-xs-right" method="GET" action="/blog/search/">
-      <input class="form-control mr-sm-2 flexter-search-bar" type="text" placeholder="Search" name="q" value="{{ request.GET.q }}" />
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" name="term" value="{{ request.GET.term }}" />
       <button class="btn my-2 my-sm-0 flexter-btn" type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>
